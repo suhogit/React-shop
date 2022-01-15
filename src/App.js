@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button,Jumbotron,Navbar,Nav,NavDropdown,Form,FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import logo from './logo.svg';
 import './App.css';
+import Data from './data.js';
 
 function App() {
+
+  let [shoes, shoes변경] = useState(Data);
+
   return (
     <div className="App">
-      <Navbar bg="light" expand="lg">
+  <Navbar bg="light" expand="lg">
   <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
@@ -28,6 +32,7 @@ function App() {
     </Form>
   </Navbar.Collapse>
 </Navbar>
+
       <Jumbotron className="background">
   <h1>Hello, world!</h1>
   <p>
@@ -42,18 +47,18 @@ function App() {
   <div className="row">
     <div className="col-md-4">
       <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>
-      <h4>상품명</h4>
-      <p>상품설명 & 가격</p>
+      <h4>{ shoes[0].title }</h4>
+      <p>{ shoes[0].content } & { shoes[0].price }</p>
     </div>
     <div className="col-md-4">
     <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%"/>
-      <h4>상품명</h4>
-      <p>상품설명 & 가격</p>
+      <h4>{ shoes[1].title }</h4>
+      <p>{ shoes[1].content } & { shoes[1].price }</p>
     </div>
     <div className="col-md-4">
     <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%"/>
-      <h4>상품명</h4>
-      <p>상품설명 & 가격</p>
+      <h4>{ shoes[2].title }</h4>
+      <p>{ shoes[2].content } & { shoes[2].price }</p>
     </div>
   </div>
 </div>
