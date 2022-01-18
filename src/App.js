@@ -5,6 +5,8 @@ import logo from './logo.svg';
 import './App.css';
 import Data from './data.js';
 
+import { Link, Route, Switch } from 'react-router-dom';
+
 function App() {
 
   let [shoes, shoes변경] = useState(Data);
@@ -33,25 +35,48 @@ function App() {
   </Navbar.Collapse>
 </Navbar>
 
-      <Jumbotron className="background">
-  <h1>Hello, world!</h1>
-  <p>
-    This is a simple hero unit
-  </p>
-  <p>
-    <Button variant="primary">Learn more</Button>
-  </p>
-</Jumbotron>
 
-<div className="container">
-  <div className="row">
-    {
-      shoes.map((a,i) => {
-        return <Card shoes={a} i={i} key={i}/>     /* {shoes[i]/} 랑 같은거임 , 반복문 돌리면 key 꼭 써야함 */
-      })
-    }
+<Route exact path="/">
+    <Jumbotron className="background">
+      <h1>Hello, world!</h1>
+      <p>
+      This is a simple hero unit
+      </p>
+      <p>
+      <Button variant="primary">Learn more</Button>
+      </p>
+  </Jumbotron>
+
+  <div className="container">
+    <div className="row">
+      {
+        shoes.map((a,i) => {
+          return <Card shoes={a} i={i} key={i}/>     /* {shoes[i]/} 랑 같은거임 , 반복문 돌리면 key 꼭 써야함 */
+        })
+      }
+    </div>
   </div>
-</div>
+</Route>
+
+
+<Route path="/detail">
+  <div className="container">
+      <div className="row">
+        <div className="col-md-6">
+          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+        </div>
+        <div className="col-md-6 mt-4">
+          <h4 className="pt-5">상품명</h4>
+          <p>상품설명</p>
+          <p>120000원</p>
+          <button className="btn btn-danger">주문하기</button> 
+        </div>
+      </div>
+  </div> 
+</Route>
+
+{/* <Route path="/어쩌구" component={Modal} ></Route> */}
+
     </div>
   );
 }
