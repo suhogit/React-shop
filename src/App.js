@@ -45,9 +45,11 @@ function App() {
 
 <div className="container">
   <div className="row">
-    <Card shoes={shoes[0]}/>
-    <Card shoes={shoes[1]}/>
-    <Card shoes={shoes[2]}/>
+    {
+      shoes.map((a,i) => {
+        return <Card shoes={a} i={i} key={i}/>     /* {shoes[i]/} 랑 같은거임 , 반복문 돌리면 key 꼭 써야함 */
+      })
+    }
   </div>
 </div>
     </div>
@@ -58,7 +60,15 @@ function App() {
 function Card(props){
   return(
     <div className="col-md-4">
-      <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>
+      <img src= { 'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg' } width="100%"/>
+      {/* ▲ props 전송하시려면
+
+        1. i={i} 이렇게 전송해주시고 2. props.i 이렇게 갖다쓴다고 배워봤습니다.
+
+        근데 i는 0,1,2가 된댔는데 우리가 필요한 숫자는 1,2,3 이잖아요
+
+        그래서 (props.i + 1) 이런 변수를 집어넣은 것입니다. */}
+        
       <h4>{ props.shoes.title }</h4>
       <p>{ props.shoes.content } & { props.shoes.price }</p>
     </div>
