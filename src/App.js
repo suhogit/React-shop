@@ -64,23 +64,20 @@ function App() {
 </Route>
 
 
-<Route path="/detail">
-
-    <Detail/>
-
+<Route path="/detail/:id">
+    <Detail shoes={shoes}/>
 </Route>
 
 
 <Route path="/:id">
-  <div>아무거나적었을때 보여주셈 dkkddkififfi
-
-
-    
-  </div>
+  <div>아무거나적었을 때 보여주셈</div>
 </Route>
 
 
 </Switch>
+
+
+
 
 {/* <Route path="/어쩌구" component={Modal} ></Route> */}
 
