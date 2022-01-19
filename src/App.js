@@ -72,7 +72,11 @@ function App() {
 
 
 <Route path="/:id">
-  <div>아무거나적었을때 보여주셈</div>
+  <div>아무거나적었을때 보여주셈 dkkddkififfi
+
+
+    
+  </div>
 </Route>
 
 
