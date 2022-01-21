@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -30,14 +31,23 @@ let 제목 = styled.h4`
 
 
 function Detail (props) {
+  
+  let [alert, alert변경] = useState(true);
+
 
   useEffect(()=>{
+
+    // axios.get()  //Detail 컴포넌트 등장 & 업데이트시 실행할 코드 []를 넣어줘서 첫 로드할때만 ajax로 데이터를 가져옴
+
+
     let 타이머 = setTimeout(()=>{ alert변경(false) }, 2000);
 
     return ()=>{ clearTimeout(타이머) }
-  }, []);  //,[] 은 그냥 컴포넌트 로드때만 한번 딱 실행하고 싶은 코드를 담을 때 쓸 수 있는 일종의 트릭쇼입니다.
+//return 지금은 별 문제없는 것 같지만 코드가 길어지거나 꼬이면 남아있는 타이머 때문에 이상한 현상이 일어날 수 있습니다.
+//그래서 컴포넌트가 사라질 때 타이머를 없애는 코드도 추가함수를 추가하면 컴포넌트가 사라질 때 특정 코드를 실행할 수 있음
 
-  let [alert, alert변경] = useState(true);
+  }, []);     //,[] 은 그냥 컴포넌트 로드때만 한번 딱 실행하고 싶은 코드를 담을 때 쓸 수 있는 일종의 트릭쇼입니다.
+
 
     let {id} = useParams();
     let history = useHistory();
@@ -48,20 +58,20 @@ function Detail (props) {
 
     return (
       <div className="container">
-         <박스>
+        <박스>
             <제목 className="red">Detail</제목>
-         </박스>
+        </박스>
 
 
-         {
-           
-           alert === true 
-           ? (<div className="my-alert2">
-                <p>재고가 얼마 남지 않았습니다</p>
-              </div>)
-           : null
+        {
+          
+          alert === true 
+          ? (<div className="my-alert2">
+              <p>재고가 얼마 남지 않았습니다</p>
+            </div>)
+          : null
 
-         }
+        }
 
 
       <div className="row">

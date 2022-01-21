@@ -10,7 +10,8 @@ import axios from 'axios';
 import { Link, Route, Switch } from 'react-router-dom';
 
 function App() {
-
+  
+  
   let [shoes, shoes변경] = useState(Data);
 
   return (
@@ -61,15 +62,22 @@ function App() {
         })
       }
     </div>
+    <br/>
     <button className="btn btn-primary" onClick={()=> {
-      axios.get('https://codingapple1.github.io/shop/data2.json')
-      .then((result)=>{ 
-        console.log(result.data)
-       })
-      .catch(()=>{ 
-        console.log('실패!zzzzz')
-       })    // ajax 요청에 실패했을때 담을 수 있는 코드
 
+
+      // axios.post('https://codingapple1.github.io/shop/data2.json', { id : 'test', pw : 1234})
+      //   .then((result)=>{  })
+      //   .catch(()=>{ })
+      // 서버를 요청이 아닌 전송해야 할때는 get이 아닌 post로. 
+      //POST 요청은 데이터 전송할 URL과 전송할 데이터 이 두가지 항목을 입력할 수 있음
+
+      axios.get('https://codingapple1.github.io/shop/data2.json')
+      .then((result)=>{ shoes변경( [...shoes, ...result.data] ) })
+      .catch(()=>{ 
+        
+       })    // ajax 요청에 실패했을때 담을 수 있는 코드
+      
     }}>더보기</button>
   </div>
 </Route>
