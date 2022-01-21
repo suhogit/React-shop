@@ -5,6 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import Data from './data.js';
 import Detail from './Detail.js';
+import axios from 'axios';
 
 import { Link, Route, Switch } from 'react-router-dom';
 
@@ -60,6 +61,16 @@ function App() {
         })
       }
     </div>
+    <button className="btn btn-primary" onClick={()=> {
+      axios.get('https://codingapple1.github.io/shop/data2.json')
+      .then((result)=>{ 
+        console.log(result.data)
+       })
+      .catch(()=>{ 
+        console.log('실패!zzzzz')
+       })    // ajax 요청에 실패했을때 담을 수 있는 코드
+
+    }}>더보기</button>
   </div>
 </Route>
 
