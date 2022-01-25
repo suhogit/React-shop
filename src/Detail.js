@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
+import {재고context} from './App.js';
 
 let 박스 = styled.div`
   padding : 20px;
@@ -33,6 +34,7 @@ let 제목 = styled.h4`
 function Detail (props) {
   
   let [alert, alert변경] = useState(true);
+  let 재고 = useContext(재고context);
 
 
   useEffect(()=>{
@@ -94,6 +96,7 @@ function Detail (props) {
           }}>뒤로가기</button> 
         </div>
       </div>
+
   </div> 
     )
   }
@@ -101,7 +104,7 @@ function Detail (props) {
 
   function Info (props){
     return (
-      <p>재고 : {props.재고[0]}</p>
+      <p>재고 : {props.재고[0]}</p> 
     )
   }
 
