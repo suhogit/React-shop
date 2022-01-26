@@ -15,12 +15,23 @@ function Cart(props){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>{ props.state[0].name }</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
+                    {
+                        props.state.map((a,i)=>{
+                            return (
+                                <tr key={i}>
+                                    <td>{ a.id }</td>
+                                    <td>{ a.name }</td>
+                                    <td>{ a.quan }</td>
+                                    <td>
+                                        <button onClick={ ()=>{ props.dispatch({ type : '수량증가' }) } }>+</button>
+                                        <button onClick={ ()=>{ props.dispatch({ type : '수량감소' }) } }>-</button>
+                                    </td> 
+
+                                     {/* 데이터 수정요청을 할 땐 props.dispatch({ type : ??? }) */}
+                                </tr>
+                                )
+                            })
+                        }
                 </tbody>
             </Table>
         </div>
