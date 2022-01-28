@@ -13,9 +13,9 @@ import { combineReducers, createStore } from 'redux';
 
 let alert초기값 = true;
 
-function reducer2(state = alert초기값, 액션) {
-  if (액션.type === 'alert닫기'){
-    state = false;
+function reducer2(state = alert초기값, 액션) {    
+  if (액션.type === 'alert닫기'){ 
+    state = false;  
     return state;
   } else {
   return state
@@ -32,8 +32,14 @@ let 초기값 = [
 ]; 
 
 
-function reducer(state = 초기값, 액션) {
-  if ( 액션.type === '수량증가' ) {
+function reducer(state = 초기값, 액션) {     // 이럴 경우 데이터를 이렇게 수정해주셈~ reducer에서 state데이터의 수정방법을 미리 정의해놔야함
+  if ( 액션.type === '항목추가' ) {
+
+    let copy = [...state];
+    copy.push(액션.데이터);
+    return copy
+
+  } else if ( 액션.type === '수량증가' ) {
 
     let copy = [...state];   //사본을 만들고 카피해서 사본을 수정함 0번째 quan1증가
     copy[0].quan++;

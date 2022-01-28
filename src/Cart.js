@@ -23,7 +23,8 @@ function Cart(props){
                                     <td>{ a.name }</td>
                                     <td>{ a.quan }</td>
                                     <td>
-                                        <button onClick={ ()=>{ props.dispatch({ type : '수량증가' }) } }>+</button>
+                                        <button onClick={ ()=>{ props.dispatch({ type : '수량증가'}) } }>+</button> {/* 액션 파라미터 */}
+                                        {/* 데이터 수정하고싶으면 reducer로 수정하는 방법 만들고 dispatch()로 수정하셈 */}
                                         <button onClick={ ()=>{ props.dispatch({ type : '수량감소' }) } }>-</button>
                                     </td> 
 

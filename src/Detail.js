@@ -7,6 +7,7 @@ import './Detail.scss';
 import {재고context} from './App.js';
 
 import { CSSTransition } from "react-transition-group";
+import { connect } from 'react-redux';
 
 let 박스 = styled.div`
   padding : 20px;
@@ -96,7 +97,13 @@ function Detail (props) {
           <Info 재고={props.재고}></Info>
 
 
-          <button className="btn btn-danger" onClick={ ()=>{ props.재고변경([9,11,12]) } }>주문하기</button> 
+          <button className="btn btn-danger" onClick={ ()=>{
+
+
+            props.재고변경([9,11,12]);
+            props.dispatch({ type : '항목추가', 데이터 : { id : 2, name : '새로운상품', quan : 1 } }); //이거 액션이라는 파라미터로 들어감
+
+            }}>주문하기</button> 
           &nbsp;
           <button className="btn btn-danger" onClick={()=>{
               history.goBack();
@@ -146,5 +153,11 @@ function Detail (props) {
     )
   }
 
+  function state를props화(state){
+    return {
+        state: state.reducer,
+        alert열렸니 : state.reducer2
+    }
+}
 
-export default Detail;
+export default connect(state를props화)(Detail)
