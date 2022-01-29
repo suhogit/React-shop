@@ -13,7 +13,8 @@ import { combineReducers, createStore } from 'redux';
 
 let alert초기값 = true;
 
-function reducer2(state = alert초기값, 액션) {    
+function reducer2(state = alert초기값, 액션) {
+  
   if (액션.type === 'alert닫기'){ 
     state = false;  
     return state;
@@ -36,7 +37,7 @@ function reducer(state = 초기값, 액션) {     // 이럴 경우 데이터를 
   if ( 액션.type === '항목추가' ) {
 
     let copy = [...state];
-    copy.push(액션.데이터);
+    copy.push(액션.데이터); // dispatch 할 때 실어보냈던 데이터가 나온걸 state에 추가
     return copy
 
   } else if ( 액션.type === '수량증가' ) {
