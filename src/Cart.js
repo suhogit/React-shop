@@ -1,8 +1,14 @@
 import React from "react";
 import {Table} from 'react-bootstrap';
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 function Cart(props){
+
+    let state = useSelector((state) => state);
+    console.log(state.reducer)
+
+    let dispatch = useDispatch();  //useSelector, useDispatch import해서 props.어쩌고 이렇게 안하고 쉽게 리덕스 안에 있는 데이터들 꺼내 쓸수 있음
+
     return(
         <div>
             <Table striped bordered hover size="sm">
@@ -16,16 +22,16 @@ function Cart(props){
                 </thead>
                 <tbody>
                     {
-                        props.state.map((a,i)=>{
+                        state.reducer.map((a,i)=>{
                             return (
                                 <tr key={i}>
                                     <td>{ a.id }</td>
                                     <td>{ a.name }</td>
                                     <td>{ a.quan }</td>
                                     <td>
-                                        <button onClick={ ()=>{ props.dispatch({ type : '수량증가'}) } }>+</button> {/* 액션 파라미터 */}
+                                        <button onClick={ ()=>{ dispatch({ type : '수량증가'}) } }>+</button> {/* 액션 파라미터 */}
                                         {/* 데이터 수정하고싶으면 reducer로 수정하는 방법 만들고 dispatch()로 수정하셈 */}
-                                        <button onClick={ ()=>{ props.dispatch({ type : '수량감소' }) } }>-</button>
+                                        <button onClick={ ()=>{ dispatch({ type : '수량감소' }) } }>-</button>
                                     </td> 
 
                                      {/* 데이터 수정요청을 할 땐 props.dispatch({ type : ??? }) */}
@@ -50,13 +56,13 @@ function Cart(props){
     )
 }
 
-function state를props화(state){
-    return {
-        state: state.reducer,
-        alert열렸니 : state.reducer2
-    }
-}
+// function state를props화(state){
+//     return {
+//         state: state.reducer,
+//         alert열렸니 : state.reducer2
+//     }
+// }
 
-export default connect(state를props화)(Cart)
+// export default connect(state를props화)(Cart)
 
-// export default Cart;
+export default Cart;
