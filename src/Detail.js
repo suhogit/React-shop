@@ -101,7 +101,7 @@ function Detail (props) {
 
 
             props.재고변경([9,11,12]);
-            props.dispatch({ type : '항목추가', 데이터 : { id : 2, name : '새로운상품', quan : 1 } }); //이거 액션이라는 파라미터로 들어감
+            props.dispatch({ type : '항목추가', 데이터 : { id : 찾은상품.id, name : 찾은상품.title, quan : 1 } }); //이거 액션이라는 파라미터로 들어감
             history.push('/cart'); // 원래 개발단계에서 미리보기 띄울때 페이지 이동하면 초기화됨 (사이트 발행하면 제대로 작동한다함) 그래서 라우터 함수를 이용해 강제 이동시킴 그럼 초기화 X
 
             //↑ 이거 쓰려면 useHistory import 되어야함

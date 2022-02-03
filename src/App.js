@@ -10,6 +10,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 
 
 import Cart from './Cart.js';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 export let 재고context = React.createContext();
@@ -67,7 +68,7 @@ function App() {
     <div className="row">
       {
         shoes.map((a,i) => {
-          return <Card shoes={a} i={i} key={i}/>     /* {shoes[i]/} 랑 같은거임 , 반복문 돌리면 key 꼭 써야함 */
+          return <Card shoes={a} i={i} key={i}/>  /* {shoes[i]/} 랑 같은거임 , 반복문 돌리면 key 꼭 써야함 */
         })
       }
     </div>
@@ -132,9 +133,10 @@ function App() {
 function Card(props){
 
   let 재고 = useContext(재고context);
+  let history = useHistory();
 
   return(
-    <div className="col-md-4">
+    <div className="col-md-4" onClick={()=>{ history.push('/detail/' + props.shoes.id) }}>
       <img src= { 'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg' } width="100%"/>
       {/* ▲ props 전송하시려면
 

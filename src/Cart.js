@@ -7,7 +7,7 @@ function Cart(props){
     let state = useSelector((state) => state);
     console.log(state.reducer)
 
-    let dispatch = useDispatch();  //useSelector, useDispatch import해서 props.어쩌고 이렇게 안하고 쉽게 리덕스 안에 있는 데이터들 꺼내 쓸수 있음
+    let dispatch = useDispatch();  //useSelector, useDispatch import해면  state를 props화 해주는 함수 어쩌고를 안하고 쉽게 리덕스 안에 있는 데이터들 꺼내 쓸수 있음
 
     return(
         <div>
@@ -29,9 +29,9 @@ function Cart(props){
                                     <td>{ a.name }</td>
                                     <td>{ a.quan }</td>
                                     <td>
-                                        <button onClick={ ()=>{ dispatch({ type : '수량증가'}) } }>+</button> {/* 액션 파라미터 */}
+                                        <button onClick={ ()=>{ dispatch({ type : '수량증가', 데이터 : a.id}) } }>+</button> {/* 액션 파라미터 */}
                                         {/* 데이터 수정하고싶으면 reducer로 수정하는 방법 만들고 dispatch()로 수정하셈 */}
-                                        <button onClick={ ()=>{ dispatch({ type : '수량감소' }) } }>-</button>
+                                        <button onClick={ ()=>{ dispatch({ type : '수량감소', 데이터 : a.id }) } }>-</button>
                                     </td> 
 
                                      {/* 데이터 수정요청을 할 땐 props.dispatch({ type : ??? }) */}

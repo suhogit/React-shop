@@ -36,20 +36,32 @@ let 초기값 = [
 function reducer(state = 초기값, 액션) {     // 이럴 경우 데이터를 이렇게 수정해주셈~ reducer에서 state데이터의 수정방법을 미리 정의해놔야함
   if ( 액션.type === '항목추가' ) {
 
-    let copy = [...state];
+
+      //state안에 id : 액션.데이터 있음?
+      let found = state.findIndex((a)=>{return a.id === 액션.데이터.id});  //findIndex : array안에서 원하는 데이터 찾아주는 함수
+
+      if ( found >= 0 ){
+
+      let copy = [...state];
+      copy[found].quan++; // dispatch 할 때 실어보냈던 데이터가 나온걸 state에 추가
+      return copy
+
+    }else{
+      let copy = [...state];
     copy.push(액션.데이터); // dispatch 할 때 실어보냈던 데이터가 나온걸 state에 추가
     return copy
+    }
 
   } else if ( 액션.type === '수량증가' ) {
 
     let copy = [...state];   //사본을 만들고 카피해서 사본을 수정함 0번째 quan1증가
-    copy[0].quan++;
-
+    copy[액션.데이터].quan++;
     return copy    //'수량증가'라는 데이트 요청이 들어오면 데이터 찾아서 복사본에 수량을 증가 시켜서 퉤 뱉어주삼
+    
   } else if ( 액션.type === '수량감소' ) {
 
     let copy = [...state];
-    copy[0].quan--;
+    copy[액션.데이터].quan--;
     return copy
   
   } else {   // 요청같은게 안들어오면 초기값(state) 뱉어주삼
