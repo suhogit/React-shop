@@ -1,17 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, lazy, Suspense } from 'react';
 import { Button,Jumbotron,Navbar,Nav,NavDropdown,Form,FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import logo from './logo.svg';
 import './App.css';
-import Data from './data.js';
-import Detail from './Detail.js';
-import axios from 'axios';
-import { Link, Route, Switch } from 'react-router-dom';
 
+import Data from './data.js';
+// import Detail from './Detail.js';
+
+
+import axios from 'axios';
+import { Link, Route, Switch, useHistory } from 'react-router-dom';
+
+
+
+import { connect } from 'react-redux';
 
 import Cart from './Cart.js';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
+let Detail = lazy(()=> import('./Detail.js') );
 
 export let 재고context = React.createContext();
 
@@ -101,7 +107,9 @@ function App() {
 <Route path="/detail/:id">
 
   <재고context.Provider value={재고}>
+    <Suspense fallback={<div>로딩중이에요</div>}>  {/* ← fallback 속성은 페이지 로딩전까지 보여줄 HTML */}
       <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+    </Suspense>
   </재고context.Provider>
 
 </Route>
